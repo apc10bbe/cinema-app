@@ -1,5 +1,5 @@
 # cinema-app
-![view_img](https://w7.pngwing.com/pngs/275/309/png-transparent-cinema-film-popcorn-food-film-poster-clapperboard.png)
+![view_img](https://i.paste.pics/84e7f502882625adc631a06cb8b1e044.png)
 
 This is simple cinema-app service with REST API, where you
 can buy tickets as user. Also you can add movies, dates 
@@ -47,7 +47,7 @@ stored in hashed form.
 2. Clone the project to your work space
 3. Install MySQL 8
 4. Create connection to DB
-    * use [db.properties]() to connect to your DB
+    * use [db.properties](https://github.com/apc10bbe/cinema-app/blob/main/src/main/resources/db.properties) to connect to your DB
     * change URL to yours
     * change USERNAME to yours
     * change PASSWORD to yours
