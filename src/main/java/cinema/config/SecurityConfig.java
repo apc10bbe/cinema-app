@@ -1,5 +1,8 @@
 package cinema.config;
 
+import static cinema.model.Role.RoleName.ADMIN;
+import static cinema.model.Role.RoleName.USER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,15 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls/", "/movies/",
-                        "/movie-sessions/available").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/orders/", "/shopping-carts/by-user").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole("ADMIN")
+                        "/movie-sessions/available").hasAnyRole(ADMIN.name(), USER.name())
+                .antMatchers(HttpMethod.GET, "/orders/", "/shopping-carts/by-user")
+                .hasRole(USER.name())
+                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/cinema-halls/", "/movies/",
-                        "/movie-sessions/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")
+                        "/movie-sessions/").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole(USER.name())
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole(USER.name())
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole(ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
